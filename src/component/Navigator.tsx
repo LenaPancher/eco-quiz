@@ -1,7 +1,8 @@
 import React from "react";
 import {NavigationContainer} from "@react-navigation/native";
-import {createNativeStackNavigator} from "@react-navigation/native-stack";
-import HelloText from "./HelloText";
+import {NativeStackNavigationProp, NativeStackScreenProps, createNativeStackNavigator} from "@react-navigation/native-stack";
+import Home from "../views/Home";
+import Game from "../views/Game";
 
 export type StackParamList = {
   Home: undefined;
@@ -10,13 +11,21 @@ export type StackParamList = {
 
 const Stack = createNativeStackNavigator<StackParamList>();
 
+// for route.params
+export type routeProps = NativeStackScreenProps<StackParamList, "Game">;
+// for useNavigation() only on Home
+export type MyNavigationProp = NativeStackNavigationProp<
+  StackParamList,
+  "Home",
+  "Game"
+>;
+
 const Navigator = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home">
-          {() => <HelloText text={"coucou"} color={"#e30404"}/>}
-        </Stack.Screen>
+        <Stack.Screen name="Home" component={Home} />
+        <Stack.Screen name="Game" component={Game} />
       </Stack.Navigator>
     </NavigationContainer>
   );
