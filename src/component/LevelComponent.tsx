@@ -8,14 +8,14 @@ export type levelComponentProps = {
 const LevelComponent = ({onPress, img}: levelComponentProps) => {
   return (
     <Pressable
-      className="h-[160px] w-[160px] bg-[#336D68] rounded-full justify-center items-center"
+      className="h-[140px] w-[140px] bg-[#336D68] rounded-full justify-center items-center"
       onPress={onPress}
     >
       <View
-        className="h-[130px] w-[130px] bg-[#419677] rounded-full justify-center items-center"
+        className="h-[120px] w-[120px] bg-[#419677] rounded-full justify-center items-center"
         style={{borderColor: "white", borderWidth: 6, borderStyle: "solid"}}
       >
-        <Image source={img} className="h-2/3 w-2/3 rounded-full" />
+        <Image source={img} className="h-full w-full rounded-full" />
       </View>
     </Pressable>
   );
