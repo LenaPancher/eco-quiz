@@ -1,15 +1,9 @@
-import {StatusBar} from "expo-status-bar";
-import {View} from "react-native";
-import HelloText from "./src/component/HelloText";
 import React from "react";
-import LevelComponent from "./src/component/LevelComponent";
+import Navigator from "./src/component/Navigator";
 
 const App = () => {
   return (
-    <View className="flex-1 items-center justify-center bg-white">
-      <LevelComponent />
-      <StatusBar style="auto" />
-    </View>
+    <Navigator/>
   );
 };
 
