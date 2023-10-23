@@ -1,10 +1,9 @@
 module.exports = {
-  content: [
-    "./App.tsx",
-    "./src/**/*.tsx"
-  ],
+  content: ["./App.tsx", "./src/**/*.tsx"],
   theme: {
+    colors: {},
     extend: {}
   },
   plugins: []
 };
+
