@@ -1,8 +1,8 @@
 import {View} from "react-native";
 import LevelComponent from "../component/LevelComponent";
-import recycle from "../../assets/Images/recycle.jpeg";
 import {useNavigation} from "@react-navigation/native";
 import {MyNavigationProp} from "../component/Navigator";
+import world from "../../assets/Images/world.png";
 
 const Home = () => {
   const navigation = useNavigation<MyNavigationProp>();
@@ -15,7 +15,7 @@ const Home = () => {
 
   return (
     <View className="flex-1 items-center">
-      <LevelComponent img={recycle} onPress={handleGoingToGame} />
+      <LevelComponent img={world} onPress={handleGoingToGame} />
     </View>
   );
 };
