@@ -1,14 +1,19 @@
-import {StatusBar} from "expo-status-bar";
-import {View} from "react-native";
-import HelloText from "./src/component/HelloText";
 import React from "react";
+import {NavigationContainer} from "@react-navigation/native";
+import {createNativeStackNavigator} from "@react-navigation/native-stack";
+import HelloText from "./src/component/HelloText";
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
-    <View className="flex-1 items-center justify-center bg-white">
-      <HelloText text={"Hello world bitches !"} color={"#f50909"}></HelloText>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home">
+          {() => <HelloText text={"coucou"} color={"#e30404"}/>}
+        </Stack.Screen>
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
 
