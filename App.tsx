@@ -1,21 +1,15 @@
 import {StatusBar} from "expo-status-bar";
-import {StyleSheet, View} from "react-native";
+import {View} from "react-native";
 import HelloText from "./src/component/HelloText";
+import React from "react";
 
-export default function App() {
+const App = () => {
   return (
-    <View style={styles.container}>
+    <View className="flex-1 items-center justify-center bg-white">
       <HelloText text={"Hello world bitches !"} color={"#f50909"}></HelloText>
-      <StatusBar style="auto"/>
+      <StatusBar style="auto" />
     </View>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center"
-  }
-});
+export default App;
