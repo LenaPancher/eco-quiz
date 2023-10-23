@@ -1,5 +1,5 @@
 import {Text, View} from "react-native";
-import {routeProps} from "../component/Navigator";
+import {routeProps} from "../navigation/Navigator";
 
 const Game = ({route}: routeProps) => {
   const {id} = route.params;

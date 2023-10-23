@@ -1,8 +1,10 @@
 import {View} from "react-native";
 import LevelComponent from "../component/LevelComponent";
 import {useNavigation} from "@react-navigation/native";
-import {MyNavigationProp} from "../component/Navigator";
+import {MyNavigationProp} from "../navigation/Navigator";
 import world from "../../assets/Images/world.png";
+
+// TODO FAIRE UNE PROGRESS BAR
 
 const Home = () => {
   const navigation = useNavigation<MyNavigationProp>();
@@ -14,7 +16,7 @@ const Home = () => {
   };
 
   return (
-    <View className="flex-1 items-center">
+    <View className="flex-1 items-center p-4">
       <LevelComponent img={world} onPress={handleGoingToGame} />
     </View>
   );
