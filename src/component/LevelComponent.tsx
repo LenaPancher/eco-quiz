@@ -1,15 +1,24 @@
-import {Text, View} from "react-native";
+import {Image, Pressable, View} from "react-native";
 
-const LevelComponent = () => {
+export type levelComponentProps = {
+  onPress: () => void;
+  img: string;
+};
 
-
-  return <View className="h-[160px] w-[160px] bg-[#336D68] rounded-full justify-center items-center">
-    <View
-      className="h-[100px] w-[100px] bg-[#419677] rounded-full"
+const LevelComponent = ({onPress, img}: levelComponentProps) => {
+  return (
+    <Pressable
+      className="h-[160px] w-[160px] bg-[#336D68] rounded-full justify-center items-center"
+      onPress={onPress}
     >
-
-    </View>
-  </View>;
+      <View
+        className="h-[130px] w-[130px] bg-[#419677] rounded-full justify-center items-center"
+        style={{borderColor: "white", borderWidth: 6, borderStyle: "solid"}}
+      >
+        <Image source={img} className="h-2/3 w-2/3 rounded-full" />
+      </View>
+    </Pressable>
+  );
 };
 
 export default LevelComponent;
