@@ -33,7 +33,7 @@ const Navigator = () => {
           name="Home"
           component={Home}
           options={{
-            header: () => (<Header currentModule={1} totalModule={30} />)
+            header: () => (<Header currentModule={10} totalModule={30} />)
           }}
         />
         <Stack.Screen name="Game" component={Game} />
