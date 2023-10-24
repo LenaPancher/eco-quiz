@@ -8,12 +8,12 @@ import {QUESTIONS} from "../utils/questions";
 const Home = () => {
   const navigation = useNavigation<MyNavigationProp>();
 
-  const handleGoingToGame = (level_id: number) => {
-    console.log("navigate : " + level_id);
-    navigation.navigate("Game", {
-      id: level_id
-    });
-  };
+const handleGoingToGame = (level_id: number) => {
+  console.log("navigate : " + level_id);
+  navigation.navigate("Game", {
+    id: level_id
+  });
+};
 
   return (
     <View className="flex-1 items-center">
