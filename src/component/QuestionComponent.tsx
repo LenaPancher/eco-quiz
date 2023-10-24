@@ -3,7 +3,7 @@ import {useState} from "react";
 import {QUESTIONS} from "../utils/questions";
 import ButtonComponent from "./ButtonComponent";
 import AnswerComponent from "./AnswerComponent";
-import {useNavigation} from "@react-navigation/native";
+import {CommonActions, useNavigation} from "@react-navigation/native";
 
 interface QuestionComponent {
   level: number;
@@ -34,7 +34,12 @@ const QuestionComponent = ({level}: QuestionComponent) => {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
       console.log(score);
-      navigation.navigate("Home");
+      navigation.dispatch(CommonActions.reset({
+        index: 1,
+        routes: [
+          {name: "Score"}
+        ]
+      }));
     }
   };
 
@@ -44,7 +49,8 @@ const QuestionComponent = ({level}: QuestionComponent) => {
         <Text className={"my-7 text-2xl"}>{currentQuestion.question}</Text>
         <View className={"flex-1 justify-around"}>
           <AnswerComponent questionItem={currentQuestion} onPress={handleAnswer} selectedOption={selectedOption}/>
-          <ButtonComponent onPress={handleNextQuestion} title={"Valider"} selectedOption={selectedOption}/>
+          <ButtonComponent onPress={handleNextQuestion} title={"Valider"} selectedOption={selectedOption}
+                           bg={"#15DF11"}/>
         </View>
       </View>
     </View>

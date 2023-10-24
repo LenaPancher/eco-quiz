@@ -8,10 +8,12 @@ import {
 import Home from "../views/Home";
 import Game from "../views/Game";
 import Header from "./Header";
+import Score from "../views/Score";
 
 export type StackParamList = {
   Home: undefined;
   Game: { id: number };
+  Score: { game_id: number };
 };
 
 const Stack = createNativeStackNavigator<StackParamList>();
@@ -22,7 +24,8 @@ export type routeProps = NativeStackScreenProps<StackParamList, "Game">;
 export type MyNavigationProp = NativeStackNavigationProp<
   StackParamList,
   "Home",
-  "Game"
+  "Game",
+  "Score"
 >;
 
 const Navigator = () => {
@@ -37,6 +40,7 @@ const Navigator = () => {
           }}
         />
         <Stack.Screen name="Game" component={Game} />
+        <Stack.Screen name="Score" component={Score}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
