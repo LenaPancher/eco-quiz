@@ -1,9 +1,9 @@
 import React from "react";
 import {NavigationContainer} from "@react-navigation/native";
 import {
+  createNativeStackNavigator,
   NativeStackNavigationProp,
-  NativeStackScreenProps,
-  createNativeStackNavigator
+  NativeStackScreenProps
 } from "@react-navigation/native-stack";
 import Home from "../views/Home";
 import Game from "../views/Game";
@@ -13,17 +13,23 @@ import Score from "../views/Score";
 export type StackParamList = {
   Home: undefined;
   Game: { id: number };
-  Score: { game_id: number };
+  Score: { score: number; nbQuestion: number };
 };
 
 const Stack = createNativeStackNavigator<StackParamList>();
 
 // for route.params
-export type routeProps = NativeStackScreenProps<StackParamList, "Game">;
+export type routeGameProps = NativeStackScreenProps<StackParamList, "Game">;
+export type routeScoreProps = NativeStackScreenProps<StackParamList, "Score">;
 // for useNavigation() only on Home
 export type MyNavigationProp = NativeStackNavigationProp<
   StackParamList,
   "Home",
+  "Game"
+>;
+// for useNavigation() only on Game
+export type NavigationGameProps = NativeStackNavigationProp<
+  StackParamList,
   "Game",
   "Score"
 >;
@@ -36,10 +42,10 @@ const Navigator = () => {
           name="Home"
           component={Home}
           options={{
-            header: () => (<Header currentModule={10} totalModule={30} />)
+            header: () => (<Header currentModule={10} totalModule={30}/>)
           }}
         />
-        <Stack.Screen name="Game" component={Game} />
+        <Stack.Screen name="Game" component={Game}/>
         <Stack.Screen name="Score" component={Score}/>
       </Stack.Navigator>
     </NavigationContainer>
