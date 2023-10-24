@@ -2,7 +2,6 @@ import {View} from "react-native";
 import LevelComponent from "../component/LevelComponent";
 import {useNavigation} from "@react-navigation/native";
 import {MyNavigationProp} from "../component/Navigator";
-import {QUESTIONS} from "../utils/questions";
 import world from "../../assets/Images/world.png";
 import {QUESTIONS} from "../utils/questions";
 
