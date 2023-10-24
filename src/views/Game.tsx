@@ -1,4 +1,4 @@
-import {View} from "react-native";
+import {View, Text} from "react-native";
 import {routeProps} from "../component/Navigator";
 import QuestionComponent from "../component/QuestionComponent";
 import {useNavigation} from "@react-navigation/native";

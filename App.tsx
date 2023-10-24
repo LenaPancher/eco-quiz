@@ -1,5 +1,5 @@
 import React from "react";
-import Navigator from "./src/component/Navigator";
+import Navigator from "./src/navigation/Navigator";
 
 const App = () => {
   return (
