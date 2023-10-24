@@ -1,6 +1,7 @@
 import {Text, View} from "react-native";
 import HeaderButton from "./HeaderButton";
 import {Octicons, Entypo, FontAwesome5} from "@expo/vector-icons";
+import ProgressBar from "../component/ProgressBar";
 
 export type headerProps = {
   currentModule: number;
@@ -9,7 +10,17 @@ export type headerProps = {
 
 const Header = ({currentModule, totalModule}: headerProps) => {
   return (
-    <View className="justify-end h-[150px] p-2 pl-4 pr-4">
+    <View
+      className="justify-end h-[180px] p-4 pl-4 pr-4"
+      style={{
+        backgroundColor: "#fff",
+        shadowColor: "#000",
+        shadowOffset: {width: 0, height: 1},
+        shadowOpacity: 0.3,
+        elevation: 3,
+        borderRadius: 20
+      }}
+    >
       <View className="flex-row items-center justify-between">
         <HeaderButton
           icon={<Octicons name="flame" size={24} color="orange" />}
@@ -22,14 +33,25 @@ const Header = ({currentModule, totalModule}: headerProps) => {
           totalRemaining={3}
         />
       </View>
-      <Text className="self-center"> Module {currentModule} </Text>
-      <View className="flex-row self-center mt-2 mb-4 items-center">
+      <Text className="self-center front-bold text-lg">
+        {" "}
+        Module {currentModule}{" "}
+      </Text>
+      <View className="flex-row self-center justify-around w-full items-center mt-2 mb-4">
         <FontAwesome5 name="crown" size={24} color="gold" />
-        <View
-          className="w-8/12 h-1 bg-[#b8860b]"
+        <ProgressBar
+          currentStep={currentModule}
+          totalStep={totalModule}
+          width={250}
         />
-        <Text> {currentModule} / {totalModule} </Text>
+        <Text style={{color: "darkgray"}} className="font-bold">
+          {" "}
+          {currentModule} / {totalModule}{" "}
+        </Text>
       </View>
+      <View
+        className="w-24 h-1 self-center bg-[#d7d7d7]"
+      />
     </View>
   );
 };
