@@ -7,7 +7,7 @@ export type levelComponentProps = {
 
 const LevelComponent = ({onPress, img}: levelComponentProps) => {
   return (
-    <View className="my-2">
+    <View className="my-3">
       <Pressable
         className="h-[140px] w-[140px] bg-[#336D68] rounded-full justify-center items-center"
         onPress={onPress}

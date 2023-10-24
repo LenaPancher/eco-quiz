@@ -1,9 +1,9 @@
-import {View, Text} from "react-native";
-import {routeProps} from "../component/Navigator";
+import {SafeAreaView} from "react-native";
 import QuestionComponent from "../component/QuestionComponent";
 import {useNavigation} from "@react-navigation/native";
 import React from "react";
 import {HeaderBackButton} from "@react-navigation/elements";
+import {routeProps} from "../navigation/Navigator";
 
 const Game = ({route}: routeProps) => {
   const navigation = useNavigation();
@@ -24,9 +24,9 @@ const Game = ({route}: routeProps) => {
   }, [navigation]);
 
   return (
-    <View>
+    <SafeAreaView className={"bg-[#FFFFFF]"}>
       <QuestionComponent level={id}/>
-    </View>
+    </SafeAreaView>
   );
 };
 

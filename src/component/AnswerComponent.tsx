@@ -9,15 +9,15 @@ interface AnswerComponentProps {
 
 const AnswerComponent = ({questionItem, onPress, selectedOption}: AnswerComponentProps) => {
   return (
-    <View className={"flex flex-row flex-wrap"}>
+    <View className={"flex-row flex-wrap pb-4 mx-2"}>
       {questionItem.options.map((option, index) => (
         <View className={"w-1/2 p-2"} key={index}>
           <TouchableOpacity
-            className="w-100 h-36 rounded-md justify-center"
+            className="w-100 h-36 rounded-md justify-center px-4"
             onPress={() => onPress(option)}
             style={{backgroundColor: selectedOption === option ? "#15DF11" : "#CDCCCC"}}
           >
-            <Text className={"text-center text-xl basis-[20] text-[#FFFFFF]"}>{option}</Text>
+            <Text className={"text-center text-xl text-[#FFFFFF]"}>{option}</Text>
           </TouchableOpacity>
         </View>
       ))}
