@@ -4,17 +4,19 @@ export type progressBarType = {
   currentStep: number;
   totalStep: number;
   width: number;
+  backgroundColor: string;
 };
 
 const ProgressBar = ({
   currentStep,
   totalStep,
-  width
+  width,
+  backgroundColor
 }: progressBarType) => {
   const eachStepSize = width / totalStep;
   const steps = [];
   for (let i = 1; i <= totalStep; i++) {
-    const stepStyle = i <= currentStep ? "gold" : "darkgray";
+    const stepStyle = i <= currentStep ? backgroundColor : "lightgray";
     steps.push(
       <View
         key={i}

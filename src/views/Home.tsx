@@ -5,13 +5,10 @@ import {MyNavigationProp} from "../navigation/Navigator";
 import world from "../../assets/Images/world.png";
 import {QUESTIONS} from "../utils/questions";
 
-// TODO FAIRE UNE PROGRESS BAR
-
 const Home = () => {
   const navigation = useNavigation<MyNavigationProp>();
 
   const handleGoingToGame = (level_id: number) => {
-    console.log("navigate : " + level_id);
     navigation.navigate("Game", {
       id: level_id
     });

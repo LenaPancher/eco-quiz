@@ -42,11 +42,17 @@ const Navigator = () => {
           name="Home"
           component={Home}
           options={{
-            header: () => (<Header currentModule={10} totalModule={30}/>)
+            header: () => <Header isGamePage={false} />
           }}
         />
-        <Stack.Screen name="Game" component={Game}/>
-        <Stack.Screen name="Score" component={Score}/>
+        <Stack.Screen
+          name="Game"
+          component={Game}
+          options={{
+            header: () => <Header isGamePage={true} />
+          }}
+        />
+        <Stack.Screen name="Score" component={Score} />
       </Stack.Navigator>
     </NavigationContainer>
   );
