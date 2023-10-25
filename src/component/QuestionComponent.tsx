@@ -1,21 +1,23 @@
 import {Image, Text, View} from "react-native";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {QUESTIONS} from "../utils/questions";
 import ButtonComponent from "./ButtonComponent";
 import AnswerComponent from "./AnswerComponent";
 import {CommonActions, useNavigation} from "@react-navigation/native";
 import world from "../../assets/Images/world.png";
+import {NavigationGameProps} from "../navigation/Navigator";
 
 interface QuestionComponent {
   level: number;
 }
 
 const QuestionComponent = ({level}: QuestionComponent) => {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationGameProps>();
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [score, setScore] = useState(0);
+  const [currentIndexQuestionDisplay, setCurrentIndexQuestionDisplay] = useState(0);
 
   const currentLevel = QUESTIONS[level - 1];
   const currentQuestion = currentLevel.questions[currentQuestionIndex];
@@ -24,24 +26,36 @@ const QuestionComponent = ({level}: QuestionComponent) => {
     setSelectedOption(selectedOption);
   };
 
-  const handleNextQuestion = () => {
-    setSelectedOption(null);
-
-    if (selectedOption === currentQuestion.correctAnswer) {
-      setScore(score + 1);
-    }
-
-    if (currentQuestionIndex < currentLevel.questions.length - 1) {
-      setCurrentQuestionIndex(currentQuestionIndex + 1);
-    } else {
-      console.log(score);
+  useEffect(() => {
+    if (currentIndexQuestionDisplay === currentLevel.questions.length) {
       navigation.dispatch(CommonActions.reset({
         index: 1,
         routes: [
-          {name: "Score"}
+          {
+            name: "Score",
+            params: {
+              score: score,
+              nbQuestion: currentLevel.questions.length
+            }
+          }
         ]
       }));
     }
+  }, [currentIndexQuestionDisplay]);
+
+  const handleNextQuestion = () => {
+    if (selectedOption === currentQuestion.correctAnswer) {
+      setScore((prevScore) => prevScore + 1);
+    }
+
+    // Isn't the last question
+    if (currentQuestionIndex < currentLevel.questions.length - 1) {
+      setCurrentQuestionIndex((prevCurrentQuestionIndex) => prevCurrentQuestionIndex + 1);
+    }
+
+    setCurrentIndexQuestionDisplay((prevCurrentIndexQuestionDisplay) => prevCurrentIndexQuestionDisplay + 1);
+    setSelectedOption(null);
+
   };
 
   return (

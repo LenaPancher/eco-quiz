@@ -3,9 +3,9 @@ import QuestionComponent from "../component/QuestionComponent";
 import {useNavigation} from "@react-navigation/native";
 import React from "react";
 import {HeaderBackButton} from "@react-navigation/elements";
-import {routeProps} from "../navigation/Navigator";
+import {routeGameProps} from "../navigation/Navigator";
 
-const Game = ({route}: routeProps) => {
+const Game = ({route}: routeGameProps) => {
   const navigation = useNavigation();
   const {id} = route.params;
 
