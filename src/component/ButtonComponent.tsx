@@ -9,7 +9,7 @@ interface ButtonComponentProps {
 
 const ButtonComponent = ({onPress, title, selectedOption, bg}: ButtonComponentProps) => {
   return (
-    <View className={"mx-4"}>
+    <View className={"mx-4 mb-4"} style={{zIndex: 2}}>
       <TouchableOpacity
         className={"w-full rounded-md"}
         onPress={onPress}

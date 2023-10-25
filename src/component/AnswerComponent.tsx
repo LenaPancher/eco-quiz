@@ -5,17 +5,18 @@ interface AnswerComponentProps {
   questionItem: QuestionItem;
   onPress: (params: string) => void;
   selectedOption: string | null;
+  colorSelectedOption?: string;
 }
 
-const AnswerComponent = ({questionItem, onPress, selectedOption}: AnswerComponentProps) => {
+const AnswerComponent = ({questionItem, onPress, selectedOption, colorSelectedOption}: AnswerComponentProps) => {
   return (
-    <View className={"flex-row flex-wrap pb-4 mx-2"}>
+    <View className={"flex-row flex-wrap pb-4 mx-2"} style={{zIndex: 0}}>
       {questionItem.options.map((option, index) => (
         <View className={"w-1/2 p-2"} key={index}>
           <TouchableOpacity
             className="w-100 h-36 rounded-md justify-center px-4"
             onPress={() => onPress(option)}
-            style={{backgroundColor: selectedOption === option ? "#15DF11" : "#CDCCCC"}}
+            style={{backgroundColor: selectedOption === option ? `${colorSelectedOption}` : "#CDCCCC"}}
           >
             <Text className={"text-center text-xl text-[#FFFFFF]"}>{option}</Text>
           </TouchableOpacity>
