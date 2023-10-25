@@ -1,5 +1,7 @@
 export type Level = {
   level: number;
+  title: string;
+  description: string;
   questions: QuestionItem[];
 }
 
@@ -18,6 +20,8 @@ export class QuestionItem {
 export const QUESTIONS: Level[] = [
   {
     level: 1,
+    title: "Tri des déchets",
+    description: "Testez vos connaissances sur le tri des déchets !",
     questions: [
       new QuestionItem("Quel déchet peut être recyclé ?", ["Plastique", "Pain", "Carton", "Verre"], "Verre"),
       new QuestionItem("Où doit-on jeter les déchets électroniques ?", ["Poubelle", "Compost", "Évier", "Point de collecte spécialisé"], "Point de collecte spécialisé"),
@@ -27,6 +31,8 @@ export const QUESTIONS: Level[] = [
   },
   {
     level: 2,
+    title: "Consommation",
+    description: "Testez vos connaissances sur la consommation !",
     questions: [
       new QuestionItem("Quel type de transport est le plus écologique ?", ["Vélo", "Voiture électrique", "Avion", "Moto"], "Vélo"),
       new QuestionItem("Quel déchet ne va jamais dans la poubelle verte ?", ["Papier", "Verre", "Piles", "Légumes"], "Piles"),
