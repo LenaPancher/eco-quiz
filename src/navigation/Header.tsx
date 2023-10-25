@@ -1,14 +1,41 @@
-import {Text, View} from "react-native";
+import {Text, View, Pressable} from "react-native";
 import HeaderButton from "./HeaderButton";
 import {Entypo, FontAwesome5, Octicons} from "@expo/vector-icons";
 import ProgressBar from "../component/ProgressBar";
+import {MyNavigationProp} from "./Navigator";
+import {useNavigation} from "@react-navigation/native";
 
 export type headerProps = {
-  currentModule: number;
-  totalModule: number;
+  isGamePage: boolean;
 };
 
-const Header = ({currentModule, totalModule}: headerProps) => {
+const Header = ({isGamePage}: headerProps) => {
+  const navigation = useNavigation<MyNavigationProp>();
+  const currentLevel = 20;
+  const totalLevel = 30;
+
+  if (isGamePage)
+    return (
+      <View className="justify-evenly items-end flex-row h-[90px]">
+        <View className="items-center justify-evenly w-full flex-row">
+          <Pressable onPress={() => navigation.goBack()}>
+            <Entypo name="cross" size={38} color="lightgray" />
+          </Pressable>
+          <ProgressBar
+            currentStep={currentLevel}
+            totalStep={totalLevel}
+            width={250}
+            backgroundColor={"forestgreen"}
+          />
+          <HeaderButton
+            icon={<Entypo name="heart" size={32} color="crimson" />}
+            textColor="crimson"
+            totalRemaining={3}
+          />
+        </View>
+      </View>
+    );
+
   return (
     <View
       className="justify-end h-[180px] p-4 pl-4 pr-4 mb-3"
@@ -23,35 +50,34 @@ const Header = ({currentModule, totalModule}: headerProps) => {
     >
       <View className="flex-row items-center justify-between">
         <HeaderButton
-          icon={<Octicons name="flame" size={24} color="orange"/>}
+          icon={<Octicons name="flame" size={24} color="orange" />}
           textColor="orange"
           totalRemaining={4}
         />
         <HeaderButton
-          icon={<Entypo name="heart" size={24} color="crimson"/>}
+          icon={<Entypo name="heart" size={24} color="crimson" />}
           textColor="crimson"
           totalRemaining={3}
         />
       </View>
       <Text className="self-center front-bold text-lg">
         {" "}
-        Module {currentModule}{" "}
+        Module {currentLevel}{" "}
       </Text>
       <View className="flex-row self-center justify-around w-full items-center mt-2 mb-4">
-        <FontAwesome5 name="crown" size={24} color="gold"/>
+        <FontAwesome5 name="crown" size={24} color="gold" />
         <ProgressBar
-          currentStep={currentModule}
-          totalStep={totalModule}
+          currentStep={currentLevel}
+          totalStep={totalLevel}
           width={250}
+          backgroundColor={"gold"}
         />
         <Text style={{color: "darkgray"}} className="font-bold">
           {" "}
-          {currentModule} / {totalModule}{" "}
+          {currentLevel} / {totalLevel}{" "}
         </Text>
       </View>
-      <View
-        className="w-24 h-1 self-center bg-[#d7d7d7]"
-      />
+      <View className="w-24 h-1 self-center bg-[#d7d7d7]" />
     </View>
   );
 };
