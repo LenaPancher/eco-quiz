@@ -10,7 +10,7 @@ interface AnswerComponentProps {
 
 const AnswerComponent = ({questionItem, onPress, selectedOption, colorSelectedOption}: AnswerComponentProps) => {
   return (
-    <View className={"flex-row flex-wrap pb-4 mx-2"} style={{zIndex: 0}}>
+    <View className={"flex-row flex-wrap pb-4 mx-2"}>
       {questionItem.options.map((option, index) => (
         <View className={"w-1/2 p-2"} key={index}>
           <TouchableOpacity
