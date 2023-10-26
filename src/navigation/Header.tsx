@@ -15,6 +15,7 @@ export type headerProps = {
 const Header = ({isGamePage}: headerProps) => {
   const navigation = useNavigation<MyNavigationProp>();
   const game = useAppSelector((state) => state.game.game);
+  const lives = useAppSelector((state) => state.lives);
   const currentLevel = useCurrentLevel(game);
   const totalQuestions = 8;
   const currentQuestion = 2;
@@ -35,7 +36,7 @@ const Header = ({isGamePage}: headerProps) => {
           <HeaderButton
             icon={<Entypo name="heart" size={32} color="crimson" />}
             textColor="crimson"
-            totalRemaining={3}
+            totalRemaining={lives}
           />
         </View>
       </View>
@@ -57,12 +58,12 @@ const Header = ({isGamePage}: headerProps) => {
         <HeaderButton
           icon={<Octicons name="flame" size={24} color="orange" />}
           textColor="orange"
-          totalRemaining={4}
+          totalRemaining={lives}
         />
         <HeaderButton
           icon={<Entypo name="heart" size={24} color="crimson" />}
           textColor="crimson"
-          totalRemaining={3}
+          totalRemaining={lives}
         />
       </View>
       <Text className="self-center front-bold text-lg">

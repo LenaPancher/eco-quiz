@@ -12,15 +12,11 @@ const Home = () => {
   const game = useAppSelector((state) => state.game.game);
   const currentLevel = useCurrentLevel(game);
 
-  const closeModal = () => {
-    setModalVisible(!modalVisible);
-  };
-
   const handleGoingToGame = useCallback((level_id: number) => {
+    setModalVisible(false);
     navigation.navigate("Game", {
       id: level_id
     });
-    closeModal();
   }, []);
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -41,7 +37,7 @@ const Home = () => {
             visible={modalVisible}
             className=""
           >
-            <TouchableWithoutFeedback onPress={closeModal}>
+            <TouchableWithoutFeedback onPress={() => setModalVisible(false)}>
               <View className=" mb-7 flex-1 justify-end items-center w-400">
                 <View className="w-96 p-4 bg-[#15DF11] rounded-lg shadow-md">
                   <Text className="text-start text-[#ffffff] font-bold text-lg">

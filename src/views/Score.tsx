@@ -14,7 +14,9 @@ const Score = ({route}: routeScoreProps) => {
   const dispatch = useAppDispatch();
 
   const handleResetHome = () => {
-    score === nbQuestion && dispatch(updateIsDoneInGame(id));
+    if (score === nbQuestion) {
+      dispatch(updateIsDoneInGame(id));
+    }
     navigation.dispatch(CommonActions.reset({
       index: 1,
       routes: [
