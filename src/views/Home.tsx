@@ -8,7 +8,7 @@ import {useCallback} from "react";
 
 const Home = () => {
   const navigation = useNavigation<MyNavigationProp>();
-  const game = useAppSelector((state) => state.game);
+  const game = useAppSelector((state) => state.game.game);
 
   const handleGoingToGame = useCallback((level_id: number) => {
     navigation.navigate("Game", {

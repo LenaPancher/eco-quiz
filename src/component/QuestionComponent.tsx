@@ -21,7 +21,7 @@ const COLOR_RED = "#EF0C0C";
 
 const QuestionComponent = ({level}: QuestionComponent) => {
   const navigation = useNavigation<NavigationGameProps>();
-  const game = useAppSelector((state) => state.game);
+  const game = useAppSelector((state) => state.game.game);
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
