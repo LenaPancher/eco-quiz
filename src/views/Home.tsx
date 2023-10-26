@@ -25,9 +25,10 @@ const Home = () => {
   return (
     <View className="flex-1 items-center bg-[#FFFFFF] h-full">
       {game.map(({level, title, description}, index) => (
-        <>
+        <View
+          key={index}
+        >
           <LevelComponent
-            key={index}
             img={world}
             onPress={() => setModalVisible(true)}
           />
@@ -58,7 +59,7 @@ const Home = () => {
               </View>
             </TouchableWithoutFeedback>
           </Modal>
-        </>
+        </View>
       ))}
     </View>
   );
