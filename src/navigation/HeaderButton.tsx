@@ -4,7 +4,7 @@ import {LivesState} from "../store/slices/Lives";
 
 export type headerButtonProps = {
   icon: React.ReactNode;
-  totalRemaining: LivesState;
+  totalRemaining: LivesState | {value: number};
   textColor: string;
 };
 

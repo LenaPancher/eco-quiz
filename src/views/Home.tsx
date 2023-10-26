@@ -10,7 +10,7 @@ import useCurrentLevel from "../hooks/useCurrentLevel";
 const Home = () => {
   const navigation = useNavigation<MyNavigationProp>();
   const game = useAppSelector((state) => state.game.game);
-  const currentLevel = useCurrentLevel(game);
+  const currentLevel = useCurrentLevel();
 
   const handleGoingToGame = useCallback((level_id: number) => {
     setModalVisible(false);

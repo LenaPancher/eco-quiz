@@ -52,9 +52,9 @@ const initialState = {
     },
     {
       level: 2,
-      title: "Le recyclage",
+      title: "Le Co2",
       isDone: false,
-      description: "Challengez vous sur vos connaissances en recyclage",
+      description: "Challengez vous sur vos connaissances en Co2",
       questions: [
         {
           question: "Quel type de transport est le plus écologique ?",
