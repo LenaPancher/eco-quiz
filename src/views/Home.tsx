@@ -1,4 +1,4 @@
-import {View, Modal, Text, Pressable} from "react-native";
+import {View, Modal, Text, Pressable, TouchableWithoutFeedback} from "react-native";
 import LevelComponent from "../component/LevelComponent";
 import {useNavigation} from "@react-navigation/native";
 import {MyNavigationProp} from "../navigation/Navigator";
@@ -20,10 +20,13 @@ const Home = () => {
   }, []);
   const [modalVisible, setModalVisible] = useState(false);
 
+  const closeModal = () => {
+    setModalVisible(!modalVisible);
+  };
 
   return (
     <View className="flex-1 items-center bg-[#FFFFFF] h-full">
-      {game.map(( {level, title, description}, index) => (
+      {game.map(({level, title, description}, index) => (
         <>
           <LevelComponent
             key={index}
@@ -34,25 +37,28 @@ const Home = () => {
             animationType="slide"
             transparent={true}
             visible={modalVisible}
+            className=""
           >
-            <View className="mb-3 flex-1 justify-end items-center">
-              <View className="m-3 bg-[#15DF11] rounded-lg p-5 text-center shadow-md">
-                <Text className="mb-4 text-start text-[#ffffff] font-bold text-lg">
-                  {title}
-                </Text>
-                <Text className="mb-4 text-start text-[#ffffff]">
-                  {description}
-                </Text>
-                <Pressable
-                  className="p-4 rounded-lg bg-[#ffffff]"
-                  onPress={() => handleGoingToGame(level)}
-                >
-                  <Text className="bg-blue text-[#15DF11] font-bold text-center w-250">
-                    COMMENCER
+            <TouchableWithoutFeedback onPress={closeModal}>
+              <View className=" mb-7 flex-1 justify-end items-center w-400">
+                <View className="w-96 p-4 bg-[#15DF11] rounded-lg shadow-md">
+                  <Text className="text-start text-[#ffffff] font-bold text-lg">
+                    {title}
                   </Text>
-                </Pressable>
+                  <Text className="mb-4 text-start text-[#ffffff]">
+                    {description}
+                  </Text>
+                  <Pressable
+                    className="rounded-lg bg-[#ffffff]"
+                    onPress={() => handleGoingToGame(level)}
+                  >
+                    <Text className="p-3 bg-blue text-[#15DF11] font-bold text-center">
+                      COMMENCER
+                    </Text>
+                  </Pressable>
+                </View>
               </View>
-            </View>
+            </TouchableWithoutFeedback>
           </Modal>
         </>
       ))}
