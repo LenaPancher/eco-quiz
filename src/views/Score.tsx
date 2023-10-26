@@ -4,12 +4,16 @@ import ScoreComponent from "../component/ScoreComponent";
 import ButtonComponent from "../component/ButtonComponent";
 import {CommonActions, useNavigation} from "@react-navigation/native";
 import {routeScoreProps} from "../navigation/Navigator";
+import {useAppDispatch} from "../store/hooks";
+import {updateIsDoneInGame} from "../store/slices/GameSlice";
 
 const Score = ({route}: routeScoreProps) => {
   const navigation = useNavigation();
-  const {score, nbQuestion} = route.params;
+  const {score, nbQuestion, id} = route.params;
+  const dispatch = useAppDispatch();
 
   const handleResetHome = () => {
+    score === nbQuestion && dispatch(updateIsDoneInGame(id));
     navigation.dispatch(CommonActions.reset({
       index: 1,
       routes: [

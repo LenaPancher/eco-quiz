@@ -76,19 +76,19 @@ const Header = ({isGamePage}: headerProps) => {
       </View>
       <Text className="self-center front-bold text-lg">
         {" "}
-        Module {currentLevel + 1}{" "}
+        Module {currentLevel}{" "}
       </Text>
       <View className="flex-row self-center justify-around w-full items-center mt-2 mb-4">
         <FontAwesome5 name="crown" size={24} color="gold" />
         <ProgressBar
-          currentStep={currentLevel + 1}
+          currentStep={currentLevel}
           totalStep={game.length}
           width={250}
           backgroundColor={"gold"}
         />
         <Text style={{color: "darkgray"}} className="font-bold">
           {" "}
-          {currentLevel + 1} / {game.length}{" "}
+          {currentLevel} / {game.length}{" "}
         </Text>
       </View>
       <View className="w-24 h-1 self-center bg-[#d7d7d7]" />

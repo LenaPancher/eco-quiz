@@ -111,7 +111,7 @@ export const GameSlice = createSlice({
       state.game.filter((game) => game.level === action.payload.level);
     },
     updateIsDoneInGame: (state, action) => {
-      const game = state.game.find((game) => game.level === action.payload.level);
+      const game = state.game.find((game) => game.level === action.payload);
       if (game) {
         game.isDone = true;
       }

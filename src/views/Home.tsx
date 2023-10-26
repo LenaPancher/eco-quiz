@@ -16,6 +16,7 @@ const Home = () => {
     });
   }, []);
 
+
   return (
     <View className="flex-1 items-center bg-[#FFFFFF] h-full">
       {game.map(({level}, index) => (

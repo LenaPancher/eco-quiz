@@ -47,7 +47,8 @@ const QuestionComponent = ({level}: QuestionComponent) => {
             name: "Score",
             params: {
               score: score,
-              nbQuestion: currentLevel.questions.length
+              nbQuestion: currentLevel.questions.length,
+              id: level
             }
           }
         ]
