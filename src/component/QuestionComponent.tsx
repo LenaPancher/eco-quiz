@@ -6,10 +6,18 @@ import {CommonActions, useNavigation} from "@react-navigation/native";
 import world from "../../assets/Images/world.png";
 import {NavigationGameProps} from "../navigation/Navigator";
 import {useAppSelector} from "../store/hooks";
+import SnackBarComponent from "./SnackBarComponent";
 
 interface QuestionComponent {
   level: number;
 }
+
+const TITLE_BUTTON_CORRECT = "Continuer";
+const TITLE_BUTTON_INCORRECT = "D'accord";
+const TITLE_BUTTON_CHECK_ANSWER = "Valider";
+
+const COLOR_GREEN = "#15DF11";
+const COLOR_RED = "#EF0C0C";
 
 const QuestionComponent = ({level}: QuestionComponent) => {
   const navigation = useNavigation<NavigationGameProps>();
@@ -19,6 +27,9 @@ const QuestionComponent = ({level}: QuestionComponent) => {
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [score, setScore] = useState(0);
   const [currentIndexQuestionDisplay, setCurrentIndexQuestionDisplay] = useState(0);
+  const [colorTitleButton, setColorTitleButton] = useState(COLOR_GREEN);
+  const [titleButton, setTitleButton] = useState(TITLE_BUTTON_CHECK_ANSWER);
+  const [colorSelectedOption, setColorSelectedOption] = useState(COLOR_GREEN);
 
   const currentLevel = game[level - 1];
   const currentQuestion = currentLevel.questions[currentQuestionIndex];
@@ -45,9 +56,9 @@ const QuestionComponent = ({level}: QuestionComponent) => {
   }, [currentIndexQuestionDisplay]);
 
   const handleNextQuestion = () => {
-    if (selectedOption === currentQuestion.correctAnswer) {
-      setScore((prevScore) => prevScore + 1);
-    }
+    setColorSelectedOption(COLOR_GREEN);
+    setTitleButton(TITLE_BUTTON_CHECK_ANSWER);
+    setColorTitleButton(COLOR_GREEN);
 
     // Isn't the last question
     if (currentQuestionIndex < currentLevel.questions.length - 1) {
@@ -57,6 +68,17 @@ const QuestionComponent = ({level}: QuestionComponent) => {
     setCurrentIndexQuestionDisplay((prevCurrentIndexQuestionDisplay) => prevCurrentIndexQuestionDisplay + 1);
     setSelectedOption(null);
 
+  };
+
+  const handleCheckAnswer = () => {
+    if (selectedOption !== currentQuestion.correctAnswer) {
+      setColorSelectedOption(COLOR_RED);
+      setTitleButton(TITLE_BUTTON_INCORRECT);
+      setColorTitleButton(COLOR_RED);
+    } else {
+      setTitleButton(TITLE_BUTTON_CORRECT);
+      setScore((prevScore) => prevScore + 1);
+    }
   };
 
   return (
@@ -69,9 +91,19 @@ const QuestionComponent = ({level}: QuestionComponent) => {
         <Image source={world}/>
       </View>
       <View className={"flex-2"}>
-        <AnswerComponent questionItem={currentQuestion} onPress={handleAnswer} selectedOption={selectedOption}/>
-        <ButtonComponent onPress={handleNextQuestion} title={"Valider"} selectedOption={selectedOption}
-          bg={"#15DF11"}/>
+        <AnswerComponent questionItem={currentQuestion} onPress={handleAnswer} selectedOption={selectedOption}
+          colorSelectedOption={colorSelectedOption}/>
+        {titleButton == TITLE_BUTTON_CORRECT &&
+          <SnackBarComponent bg={"#CBFCCA"} height={"36"} title={"Super !"} icon={"check-circle"}
+            colorIcon={COLOR_GREEN}/>
+        }
+        {titleButton == TITLE_BUTTON_INCORRECT &&
+          <SnackBarComponent bg={"#FDCACA"} height={"1/2"} title={"Incorrect"} icon={"times-circle"}
+            colorIcon={COLOR_RED} correctAnswer={currentQuestion.correctAnswer}/>
+        }
+        <ButtonComponent onPress={titleButton === "Valider" ? handleCheckAnswer : handleNextQuestion}
+          title={titleButton} selectedOption={selectedOption}
+          bg={colorTitleButton}/>
       </View>
     </View>
   );
