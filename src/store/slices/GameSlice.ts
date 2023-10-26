@@ -21,7 +21,7 @@ const initialState = {
       level: 1,
       title: "Le recyclage",
       description: "Challengez vous sur vos connaissances en recyclage",
-      isDone: true,
+      isDone: false,
       questions: [
         {
           question: "Quel déchet peut être recyclé ?",
@@ -108,7 +108,13 @@ export const GameSlice = createSlice({
   initialState,
   reducers: {
     displayOneGame: (state, action) => {
-      state.game.filter((game) => game.title === action.payload.title);
+      state.game.filter((game) => game.level === action.payload.level);
+    },
+    updateIsDoneInGame: (state, action) => {
+      const game = state.game.find((game) => game.level === action.payload.level);
+      if (game) {
+        game.isDone = true;
+      }
     }
   },
   extraReducers: (builder) => {
@@ -128,7 +134,7 @@ export const GameSlice = createSlice({
   }
 });
 
-export const {displayOneGame} = GameSlice.actions;
+export const {displayOneGame, updateIsDoneInGame} = GameSlice.actions;
 
 export default GameSlice.reducer;
 
