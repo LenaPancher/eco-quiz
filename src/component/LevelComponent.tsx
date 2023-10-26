@@ -1,3 +1,4 @@
+import React from "react";
 import {Image, Pressable, View, ImageSourcePropType} from "react-native";
 
 export type levelComponentProps = {
