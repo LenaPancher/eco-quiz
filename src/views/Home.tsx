@@ -5,10 +5,12 @@ import {MyNavigationProp} from "../navigation/Navigator";
 import world from "../../assets/Images/world.png";
 import {useAppSelector} from "../store/hooks";
 import React, {useCallback, useState} from "react";
+import useCurrentLevel from "../hooks/useCurrentLevel";
 
 const Home = () => {
   const navigation = useNavigation<MyNavigationProp>();
   const game = useAppSelector((state) => state.game.game);
+  const currentLevel = useCurrentLevel(game);
 
   const closeModal = () => {
     setModalVisible(!modalVisible);
@@ -31,6 +33,7 @@ const Home = () => {
           <LevelComponent
             img={world}
             onPress={() => setModalVisible(true)}
+            isDisabled={level > currentLevel + 1}
           />
           <Modal
             animationType="slide"

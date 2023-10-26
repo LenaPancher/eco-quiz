@@ -4,14 +4,17 @@ import {Image, Pressable, View, ImageSourcePropType} from "react-native";
 export type levelComponentProps = {
   onPress: () => void;
   img: ImageSourcePropType;
+  isDisabled: boolean;
 };
 
-const LevelComponent = ({onPress, img}: levelComponentProps) => {
+const LevelComponent = ({onPress, img, isDisabled}: levelComponentProps) => {
   return (
     <View className="my-3">
       <Pressable
-        className="h-[140px] w-[140px] bg-[#336D68] rounded-full justify-center items-center"
+        className="h-[140px] w-[140px] rounded-full justify-center items-center"
         onPress={onPress}
+        disabled={isDisabled}
+        style={isDisabled ? {backgroundColor: "gray"} : {backgroundColor:"#15DF11"}}
       >
         <View
           className="h-[120px] w-[120px] bg-[#419677] rounded-full justify-center items-center"
