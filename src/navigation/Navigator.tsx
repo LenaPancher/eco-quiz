@@ -13,7 +13,7 @@ import Score from "../views/Score";
 export type StackParamList = {
   Home: undefined;
   Game: { id: number };
-  Score: { score: number; nbQuestion: number };
+  Score: { score: number; nbQuestion: number; id: number };
 };
 
 const Stack = createNativeStackNavigator<StackParamList>();

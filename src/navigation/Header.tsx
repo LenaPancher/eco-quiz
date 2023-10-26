@@ -4,6 +4,9 @@ import {Entypo, FontAwesome5, Octicons} from "@expo/vector-icons";
 import ProgressBar from "../component/ProgressBar";
 import {MyNavigationProp} from "./Navigator";
 import {useNavigation} from "@react-navigation/native";
+import {useAppSelector} from "../store/hooks";
+import {useEffect, useState} from "react";
+import {Level} from "../store/slices/GameSlice";
 
 export type headerProps = {
   isGamePage: boolean;
@@ -11,8 +14,19 @@ export type headerProps = {
 
 const Header = ({isGamePage}: headerProps) => {
   const navigation = useNavigation<MyNavigationProp>();
-  const currentLevel = 20;
-  const totalLevel = 30;
+  const game = useAppSelector((state) => state.game.game);
+  const [currentLevel, setCurrentLevel] = useState(0);
+  const findLastIsDoneIndex = (arr: Level[]) => {
+    for (let i = arr.length - 1; i >= 0; i--) {
+      arr[i].isDone && setCurrentLevel(i);
+    }
+  };
+  const totalQuestions = 8;
+  const currentQuestion = 2;
+
+  useEffect(() => {
+    findLastIsDoneIndex(game);
+  }, [game]);
 
   if (isGamePage)
     return (
@@ -22,8 +36,8 @@ const Header = ({isGamePage}: headerProps) => {
             <Entypo name="cross" size={38} color="lightgray" />
           </Pressable>
           <ProgressBar
-            currentStep={currentLevel}
-            totalStep={totalLevel}
+            currentStep={currentQuestion}
+            totalStep={totalQuestions}
             width={250}
             backgroundColor={"forestgreen"}
           />
@@ -68,13 +82,13 @@ const Header = ({isGamePage}: headerProps) => {
         <FontAwesome5 name="crown" size={24} color="gold" />
         <ProgressBar
           currentStep={currentLevel}
-          totalStep={totalLevel}
+          totalStep={game.length}
           width={250}
           backgroundColor={"gold"}
         />
         <Text style={{color: "darkgray"}} className="font-bold">
           {" "}
-          {currentLevel} / {totalLevel}{" "}
+          {currentLevel} / {game.length}{" "}
         </Text>
       </View>
       <View className="w-24 h-1 self-center bg-[#d7d7d7]" />

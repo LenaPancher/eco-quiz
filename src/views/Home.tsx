@@ -8,7 +8,7 @@ import React, {useCallback, useState} from "react";
 
 const Home = () => {
   const navigation = useNavigation<MyNavigationProp>();
-  const game = useAppSelector((state) => state.game);
+  const game = useAppSelector((state) => state.game.game);
 
   const closeModal = () => {
     setModalVisible(!modalVisible);
@@ -23,6 +23,7 @@ const Home = () => {
   const [modalVisible, setModalVisible] = useState(false);
 
   
+
 
   return (
     <View className="flex-1 items-center bg-[#FFFFFF] h-full">
