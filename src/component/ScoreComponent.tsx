@@ -1,5 +1,6 @@
 import {Text, View} from "react-native";
 import {FontAwesome5} from "@expo/vector-icons";
+import React from "react";
 
 interface ScoreComponentProps {
   bg: string;

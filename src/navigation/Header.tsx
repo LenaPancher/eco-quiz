@@ -5,7 +5,7 @@ import ProgressBar from "../component/ProgressBar";
 import {MyNavigationProp} from "./Navigator";
 import {useNavigation} from "@react-navigation/native";
 import {useAppSelector} from "../store/hooks";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Level} from "../store/slices/GameSlice";
 
 export type headerProps = {
@@ -16,7 +16,7 @@ const Header = ({isGamePage}: headerProps) => {
   const navigation = useNavigation<MyNavigationProp>();
   const game = useAppSelector((state) => state.game.game);
   const [currentLevel, setCurrentLevel] = useState(0);
-  const findLastIsDoneIndex = (arr: Level[]) => {
+  const findLastGameDone = (arr: Level[]) => {
     for (let i = arr.length - 1; i >= 0; i--) {
       arr[i].isDone && setCurrentLevel(i);
     }
@@ -25,7 +25,7 @@ const Header = ({isGamePage}: headerProps) => {
   const currentQuestion = 2;
 
   useEffect(() => {
-    findLastIsDoneIndex(game);
+    findLastGameDone(game);
   }, [game]);
 
   if (isGamePage)

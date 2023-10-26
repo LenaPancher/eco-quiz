@@ -6,6 +6,7 @@ import {CommonActions, useNavigation} from "@react-navigation/native";
 import {routeScoreProps} from "../navigation/Navigator";
 import {useAppDispatch} from "../store/hooks";
 import {updateIsDoneInGame} from "../store/slices/GameSlice";
+import React from "react";
 
 const Score = ({route}: routeScoreProps) => {
   const navigation = useNavigation();

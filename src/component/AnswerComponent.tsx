@@ -1,5 +1,6 @@
 import {Text, TouchableOpacity, View} from "react-native";
 import {QuestionItem} from "../store/slices/GameSlice";
+import React from "react";
 
 interface AnswerComponentProps {
   questionItem: QuestionItem;

@@ -1,3 +1,4 @@
+import React from "react";
 import {GestureResponderEvent, Text, TouchableOpacity, View} from "react-native";
 
 interface ButtonComponentProps {

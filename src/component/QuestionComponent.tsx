@@ -1,5 +1,5 @@
 import {Image, Text, View} from "react-native";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import ButtonComponent from "./ButtonComponent";
 import AnswerComponent from "./AnswerComponent";
 import {CommonActions, useNavigation} from "@react-navigation/native";

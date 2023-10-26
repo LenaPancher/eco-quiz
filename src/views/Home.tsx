@@ -22,9 +22,6 @@ const Home = () => {
   }, []);
   const [modalVisible, setModalVisible] = useState(false);
 
-  
-
-
   return (
     <View className="flex-1 items-center bg-[#FFFFFF] h-full">
       {game.map(({level, title, description}, index) => (
