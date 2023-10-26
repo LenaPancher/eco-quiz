@@ -5,8 +5,8 @@ import ProgressBar from "../component/ProgressBar";
 import {MyNavigationProp} from "./Navigator";
 import {useNavigation} from "@react-navigation/native";
 import {useAppSelector} from "../store/hooks";
-import React, {useEffect, useState} from "react";
-import {Level} from "../store/slices/GameSlice";
+import React from "react";
+import useCurrentLevel from "../hooks/useCurrentLevel";
 
 export type headerProps = {
   isGamePage: boolean;
@@ -15,18 +15,10 @@ export type headerProps = {
 const Header = ({isGamePage}: headerProps) => {
   const navigation = useNavigation<MyNavigationProp>();
   const game = useAppSelector((state) => state.game.game);
-  const [currentLevel, setCurrentLevel] = useState(0);
-  const findLastGameDone = (arr: Level[]) => {
-    for (let i = arr.length - 1; i >= 0; i--) {
-      arr[i].isDone && setCurrentLevel(i);
-    }
-  };
+  const lives = useAppSelector((state) => state.lives);
+  const currentLevel = useCurrentLevel();
   const totalQuestions = 8;
   const currentQuestion = 2;
-
-  useEffect(() => {
-    findLastGameDone(game);
-  }, [game]);
 
   if (isGamePage)
     return (
@@ -44,7 +36,7 @@ const Header = ({isGamePage}: headerProps) => {
           <HeaderButton
             icon={<Entypo name="heart" size={32} color="crimson" />}
             textColor="crimson"
-            totalRemaining={3}
+            totalRemaining={lives}
           />
         </View>
       </View>
@@ -66,17 +58,16 @@ const Header = ({isGamePage}: headerProps) => {
         <HeaderButton
           icon={<Octicons name="flame" size={24} color="orange" />}
           textColor="orange"
-          totalRemaining={4}
+          totalRemaining={{value: 3}}
         />
         <HeaderButton
           icon={<Entypo name="heart" size={24} color="crimson" />}
           textColor="crimson"
-          totalRemaining={3}
+          totalRemaining={lives}
         />
       </View>
       <Text className="self-center front-bold text-lg">
-        {" "}
-        Module {currentLevel}{" "}
+        Mes modules
       </Text>
       <View className="flex-row self-center justify-around w-full items-center mt-2 mb-4">
         <FontAwesome5 name="crown" size={24} color="gold" />

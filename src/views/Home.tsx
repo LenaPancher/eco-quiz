@@ -5,31 +5,31 @@ import {MyNavigationProp} from "../navigation/Navigator";
 import world from "../../assets/Images/world.png";
 import {useAppSelector} from "../store/hooks";
 import React, {useCallback, useState} from "react";
+import useCurrentLevel from "../hooks/useCurrentLevel";
 
 const Home = () => {
   const navigation = useNavigation<MyNavigationProp>();
   const game = useAppSelector((state) => state.game.game);
-
-  const closeModal = () => {
-    setModalVisible(!modalVisible);
-  };
+  const currentLevel = useCurrentLevel();
 
   const handleGoingToGame = useCallback((level_id: number) => {
+    setModalVisible(false);
     navigation.navigate("Game", {
       id: level_id
     });
-    closeModal();
   }, []);
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
     <View className="flex-1 items-center bg-[#FFFFFF] h-full">
       {game.map(({level, title, description}, index) => (
-        <>
+        <View
+          key={index}
+        >
           <LevelComponent
-            key={index}
             img={world}
             onPress={() => setModalVisible(true)}
+            isDisabled={level > currentLevel + 1}
           />
           <Modal
             animationType="slide"
@@ -37,7 +37,7 @@ const Home = () => {
             visible={modalVisible}
             className=""
           >
-            <TouchableWithoutFeedback onPress={closeModal}>
+            <TouchableWithoutFeedback onPress={() => setModalVisible(false)}>
               <View className=" mb-7 flex-1 justify-end items-center w-400">
                 <View className="w-96 p-4 bg-[#15DF11] rounded-lg shadow-md">
                   <Text className="text-start text-[#ffffff] font-bold text-lg">
@@ -58,7 +58,7 @@ const Home = () => {
               </View>
             </TouchableWithoutFeedback>
           </Modal>
-        </>
+        </View>
       ))}
     </View>
   );

@@ -1,12 +1,13 @@
-import {Image, Text, View} from "react-native";
+import {Alert, Image, Text, View} from "react-native";
 import React, {useEffect, useState} from "react";
 import ButtonComponent from "./ButtonComponent";
 import AnswerComponent from "./AnswerComponent";
 import {CommonActions, useNavigation} from "@react-navigation/native";
 import world from "../../assets/Images/world.png";
 import {NavigationGameProps} from "../navigation/Navigator";
-import {useAppSelector} from "../store/hooks";
+import {useAppDispatch, useAppSelector} from "../store/hooks";
 import SnackBarComponent from "./SnackBarComponent";
+import {decrementLife} from "../store/slices/Lives";
 
 interface QuestionComponent {
   level: number;
@@ -22,6 +23,8 @@ const COLOR_RED = "#EF0C0C";
 const QuestionComponent = ({level}: QuestionComponent) => {
   const navigation = useNavigation<NavigationGameProps>();
   const game = useAppSelector((state) => state.game.game);
+  const lives = useAppSelector((state) => state.lives.value);
+  const dispatch = useAppDispatch();
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
@@ -54,7 +57,18 @@ const QuestionComponent = ({level}: QuestionComponent) => {
         ]
       }));
     }
-  }, [currentIndexQuestionDisplay]);
+    if(lives === 0) {
+      Alert.alert("Tu as perdu toutes tes vies, reviens demain !");
+      navigation.dispatch(CommonActions.reset({
+        index: 1,
+        routes: [
+          {
+            name: "Home"
+          }
+        ]
+      }));
+    }
+  }, [currentIndexQuestionDisplay, lives]);
 
   const handleNextQuestion = () => {
     setColorSelectedOption(COLOR_GREEN);
@@ -76,6 +90,7 @@ const QuestionComponent = ({level}: QuestionComponent) => {
       setColorSelectedOption(COLOR_RED);
       setTitleButton(TITLE_BUTTON_INCORRECT);
       setColorTitleButton(COLOR_RED);
+      dispatch(decrementLife());
     } else {
       setTitleButton(TITLE_BUTTON_CORRECT);
       setScore((prevScore) => prevScore + 1);
