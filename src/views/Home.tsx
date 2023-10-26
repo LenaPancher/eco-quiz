@@ -10,19 +10,19 @@ const Home = () => {
   const navigation = useNavigation<MyNavigationProp>();
   const game = useAppSelector((state) => state.game);
 
+  const closeModal = () => {
+    setModalVisible(!modalVisible);
+  };
+
   const handleGoingToGame = useCallback((level_id: number) => {
     navigation.navigate("Game", {
       id: level_id
     });
-    setModalVisible(!modalVisible);
-
-
+    closeModal();
   }, []);
   const [modalVisible, setModalVisible] = useState(false);
 
-  const closeModal = () => {
-    setModalVisible(!modalVisible);
-  };
+  
 
   return (
     <View className="flex-1 items-center bg-[#FFFFFF] h-full">
