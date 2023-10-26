@@ -2,6 +2,8 @@ import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
 export type Level = {
   level: number;
+  title: string;
+  description: string;
   questions: QuestionItem[];
 }
 
@@ -14,6 +16,8 @@ export type QuestionItem = {
 const initialState: Level[] = [
   {
     level: 1,
+    title: "Niveau 1",
+    description: "Découvrez les bases de l'écologie",
     questions: [
       {
         question: "Quel déchet peut être recyclé ?",
@@ -44,6 +48,8 @@ const initialState: Level[] = [
   },
   {
     level: 2,
+    title: "Niveau 2",
+    description: "Approfondissez vos connaissances",
     questions: [
       {
         question: "Quel type de transport est le plus écologique ?",
