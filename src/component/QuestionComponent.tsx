@@ -1,11 +1,11 @@
 import {Image, Text, View} from "react-native";
 import {useEffect, useState} from "react";
-import {QUESTIONS} from "../utils/questions";
 import ButtonComponent from "./ButtonComponent";
 import AnswerComponent from "./AnswerComponent";
 import {CommonActions, useNavigation} from "@react-navigation/native";
 import world from "../../assets/Images/world.png";
 import {NavigationGameProps} from "../navigation/Navigator";
+import {useAppSelector} from "../store/hooks";
 import SnackBarComponent from "./SnackBarComponent";
 
 interface QuestionComponent {
@@ -21,6 +21,7 @@ const COLOR_RED = "#EF0C0C";
 
 const QuestionComponent = ({level}: QuestionComponent) => {
   const navigation = useNavigation<NavigationGameProps>();
+  const game = useAppSelector((state) => state.game);
 
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
@@ -30,7 +31,7 @@ const QuestionComponent = ({level}: QuestionComponent) => {
   const [titleButton, setTitleButton] = useState(TITLE_BUTTON_CHECK_ANSWER);
   const [colorSelectedOption, setColorSelectedOption] = useState(COLOR_GREEN);
 
-  const currentLevel = QUESTIONS[level - 1];
+  const currentLevel = game[level - 1];
   const currentQuestion = currentLevel.questions[currentQuestionIndex];
 
   const handleAnswer = (selectedOption: string) => {
