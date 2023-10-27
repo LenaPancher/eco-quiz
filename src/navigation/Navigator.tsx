@@ -12,7 +12,7 @@ import Score from "../views/Score";
 
 export type StackParamList = {
   Home: undefined;
-  Game: { id: number };
+  Game: undefined;
   Score: { score: number; nbQuestion: number; id: number };
 };
 
@@ -42,17 +42,17 @@ const Navigator = () => {
           name="Home"
           component={Home}
           options={{
-            header: () => <Header isGamePage={false} />
+            header: () => <Header isGamePage={false}/>
           }}
         />
         <Stack.Screen
           name="Game"
           component={Game}
           options={{
-            header: () => <Header isGamePage={true} />
+            header: () => <Header isGamePage={true}/>
           }}
         />
-        <Stack.Screen name="Score" component={Score} />
+        <Stack.Screen name="Score" component={Score}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
