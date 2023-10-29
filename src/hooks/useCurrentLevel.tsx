@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react";
+import {useEffect, useState} from "react";
 import {Level} from "../store/slices/GameSlice";
 import {useAppSelector} from "../store/hooks";
 
@@ -9,7 +9,7 @@ function useCurrentLevel(): number {
   const findLastGameDone = (arr: Level[]) => {
     for (let i = arr.length - 1; i >= 0; i--) {
       if (arr[i].isDone) {
-        setCurrentLevel(i + 1);
+        setCurrentLevel((prevCurrentLevel) => prevCurrentLevel + 1);
         return;
       }
     }

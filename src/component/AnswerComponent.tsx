@@ -7,14 +7,16 @@ interface AnswerComponentProps {
   onPress: (params: string) => void;
   selectedOption: string | null;
   colorSelectedOption?: string;
+  isDisabled: boolean;
 }
 
-const AnswerComponent = ({questionItem, onPress, selectedOption, colorSelectedOption}: AnswerComponentProps) => {
+const AnswerComponent = ({questionItem, onPress, selectedOption, colorSelectedOption, isDisabled}: AnswerComponentProps) => {
   return (
-    <View className={"flex-row flex-wrap pb-4 mx-2"}>
+    <View className={"flex-row flex-wrap pb-2 mx-2"}>
       {questionItem.options.map((option, index) => (
         <View className={"w-1/2 p-2"} key={index}>
           <TouchableOpacity
+            disabled={isDisabled}
             className="w-100 h-36 rounded-md justify-center px-4"
             onPress={() => onPress(option)}
             style={{backgroundColor: selectedOption === option ? `${colorSelectedOption}` : "#CDCCCC"}}

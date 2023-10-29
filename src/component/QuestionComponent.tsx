@@ -33,6 +33,7 @@ const QuestionComponent = ({level}: QuestionComponent) => {
   const [colorTitleButton, setColorTitleButton] = useState(COLOR_GREEN);
   const [titleButton, setTitleButton] = useState(TITLE_BUTTON_CHECK_ANSWER);
   const [colorSelectedOption, setColorSelectedOption] = useState(COLOR_GREEN);
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const currentLevel = game[level - 1];
   const currentQuestion = currentLevel.questions[currentQuestionIndex];
@@ -57,7 +58,7 @@ const QuestionComponent = ({level}: QuestionComponent) => {
         ]
       }));
     }
-    if(lives === 0) {
+    if (lives === 0) {
       Alert.alert("Tu as perdu toutes tes vies, reviens demain !");
       navigation.dispatch(CommonActions.reset({
         index: 1,
@@ -74,6 +75,7 @@ const QuestionComponent = ({level}: QuestionComponent) => {
     setColorSelectedOption(COLOR_GREEN);
     setTitleButton(TITLE_BUTTON_CHECK_ANSWER);
     setColorTitleButton(COLOR_GREEN);
+    setIsDisabled(false);
 
     // Isn't the last question
     if (currentQuestionIndex < currentLevel.questions.length - 1) {
@@ -86,6 +88,7 @@ const QuestionComponent = ({level}: QuestionComponent) => {
   };
 
   const handleCheckAnswer = () => {
+    setIsDisabled(true);
     if (selectedOption !== currentQuestion.correctAnswer) {
       setColorSelectedOption(COLOR_RED);
       setTitleButton(TITLE_BUTTON_INCORRECT);
@@ -103,12 +106,12 @@ const QuestionComponent = ({level}: QuestionComponent) => {
         <Text className={"mt-7 text-2xl"}>{currentQuestion.question}</Text>
         <View className="w-24 h-[1] bg-[#d7d7d7] my-2"/>
       </View>
-      <View className={"flex-1 items-center justify-center"}>
-        <Image source={world}/>
+      <View className={"flex-1 items-center justify-center my-2"}>
+        <Image source={world} style={{resizeMode: "contain"}} className={"flex-1"}/>
       </View>
       <View className={"flex-2"}>
         <AnswerComponent questionItem={currentQuestion} onPress={handleAnswer} selectedOption={selectedOption}
-          colorSelectedOption={colorSelectedOption}/>
+          colorSelectedOption={colorSelectedOption} isDisabled={isDisabled}/>
         {titleButton == TITLE_BUTTON_CORRECT &&
           <SnackBarComponent bg={"#CBFCCA"} height={"36"} title={"Super !"} icon={"check-circle"}
             colorIcon={COLOR_GREEN}/>

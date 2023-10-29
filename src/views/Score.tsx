@@ -31,9 +31,9 @@ const Score = ({route}: routeScoreProps) => {
         <Image source={world} className={"self-center"}/>
       </View>
       <View className={"flex-1"}>
-        <Text className={"color-[#FEE81F] text-center text-3xl mb-10"}>Leçon terminée !</Text>
+        <Text className={"text-center text-3xl mb-10"}>Leçon terminée !</Text>
         <View className={"flex-wrap flex-row justify-center"}>
-          <ScoreComponent bg={"#FEE81F"} ml={"ml-4"} mr={"mr-2"} title={"Réussite"} colorSubTitle={"#FEE81F"}
+          <ScoreComponent bg={"gold"} ml={"ml-4"} mr={"mr-2"} title={"Réussite"} colorSubTitle={"gold"}
             icon={"crown"} score={`${score} / ${nbQuestion}`}/>
           <ScoreComponent bg={"#15DF11"} mr={"mr-4"} ml={"ml-2"} title={"Précision"} colorSubTitle={"#15DF11"}
             icon={"bullseye"} score={`${(score * 100) / nbQuestion} %`}/>
