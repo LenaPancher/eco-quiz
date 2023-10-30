@@ -8,6 +8,7 @@ import {NavigationGameProps} from "../navigation/Navigator";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
 import SnackBarComponent from "./SnackBarComponent";
 import {decrementLife} from "../store/slices/Lives";
+import {incrementCurrentQuestionIndexState, restartCurrentQuestionIndexState} from "../store/slices/CurrentQuestionIndexSlice";
 
 interface QuestionComponent {
   level: number;
@@ -23,10 +24,9 @@ const COLOR_RED = "#EF0C0C";
 const QuestionComponent = ({level}: QuestionComponent) => {
   const navigation = useNavigation<NavigationGameProps>();
   const game = useAppSelector((state) => state.game.game);
+  const currentQuestionIndex = useAppSelector((state) => state.currentQuestionIndex.value);
   const lives = useAppSelector((state) => state.lives.value);
   const dispatch = useAppDispatch();
-
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [score, setScore] = useState(0);
   const [currentIndexQuestionDisplay, setCurrentIndexQuestionDisplay] = useState(0);
@@ -44,6 +44,7 @@ const QuestionComponent = ({level}: QuestionComponent) => {
 
   useEffect(() => {
     if (currentIndexQuestionDisplay === currentLevel.questions.length) {
+      dispatch(restartCurrentQuestionIndexState());
       navigation.dispatch(CommonActions.reset({
         index: 1,
         routes: [
@@ -60,6 +61,7 @@ const QuestionComponent = ({level}: QuestionComponent) => {
     }
     if (lives === 0) {
       Alert.alert("Tu as perdu toutes tes vies, reviens demain !");
+      dispatch(restartCurrentQuestionIndexState());
       navigation.dispatch(CommonActions.reset({
         index: 1,
         routes: [
@@ -79,7 +81,7 @@ const QuestionComponent = ({level}: QuestionComponent) => {
 
     // Isn't the last question
     if (currentQuestionIndex < currentLevel.questions.length - 1) {
-      setCurrentQuestionIndex((prevCurrentQuestionIndex) => prevCurrentQuestionIndex + 1);
+      dispatch(incrementCurrentQuestionIndexState());
     }
 
     setCurrentIndexQuestionDisplay((prevCurrentIndexQuestionDisplay) => prevCurrentIndexQuestionDisplay + 1);

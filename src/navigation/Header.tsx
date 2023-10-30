@@ -4,9 +4,10 @@ import {Entypo, FontAwesome5, Octicons} from "@expo/vector-icons";
 import ProgressBar from "../component/ProgressBar";
 import {MyNavigationProp} from "./Navigator";
 import {useNavigation} from "@react-navigation/native";
-import {useAppSelector} from "../store/hooks";
+import {useAppDispatch, useAppSelector} from "../store/hooks";
 import React from "react";
 import useCurrentLevel from "../hooks/useCurrentLevel";
+import {restartCurrentQuestionIndexState} from "../store/slices/CurrentQuestionIndexSlice";
 
 export type headerProps = {
   isGamePage: boolean;
@@ -14,22 +15,28 @@ export type headerProps = {
 
 const Header = ({isGamePage}: headerProps) => {
   const navigation = useNavigation<MyNavigationProp>();
+  const dispatch = useAppDispatch();
   const game = useAppSelector((state) => state.game.game);
+  const currentQuestionIndex = useAppSelector((state) => state.currentQuestionIndex.value);
   const lives = useAppSelector((state) => state.lives);
   const currentLevel = useCurrentLevel();
   const totalQuestions = game[currentLevel].questions.length;
   const gameIsDone = game.filter((game) => game.isDone === true).length;
-  const currentQuestion = 1;
+
+  const handleGoBack = () => {
+    navigation.goBack();
+    dispatch(restartCurrentQuestionIndexState());
+  };
 
   if (isGamePage)
     return (
       <View className="justify-evenly items-end flex-row h-[90px]">
         <View className="items-center justify-evenly w-full flex-row">
-          <Pressable onPress={() => navigation.goBack()}>
+          <Pressable onPress={handleGoBack}>
             <Entypo name="cross" size={38} color="lightgray"/>
           </Pressable>
           <ProgressBar
-            currentStep={currentQuestion}
+            currentStep={currentQuestionIndex}
             totalStep={totalQuestions}
             width={250}
             backgroundColor={"forestgreen"}
