@@ -5,13 +5,12 @@ import {MyNavigationProp} from "../navigation/Navigator";
 import world from "../../assets/Images/world.png";
 import {useAppSelector} from "../store/hooks";
 import React, {useCallback, useState} from "react";
-import useCurrentLevel from "../hooks/useCurrentLevel";
 
 const Home = () => {
   const navigation = useNavigation<MyNavigationProp>();
   const game = useAppSelector((state) => state.game.game);
   const [modalVisible, setModalVisible] = useState<number | null>(null);
-  const currentLevel = useCurrentLevel();
+  const currentLevel = useAppSelector((state) => state.currentLevel.value);
 
   const handleGoingToGame = useCallback((level_id: number) => {
     setModalVisible(null);
@@ -28,14 +27,14 @@ const Home = () => {
         >
           <LevelComponent
             img={world}
-            onPress={() => setModalVisible(index)}
-            isDisabled={level > currentLevel + 1}
+            onPress={() => setModalVisible(level)}
+            isDisabled={level > currentLevel}
             isDone={isDone}
           />
           <Modal
             animationType="slide"
             transparent={true}
-            visible={index == modalVisible}
+            visible={level === modalVisible}
           >
             <TouchableWithoutFeedback onPress={() => setModalVisible(null)}>
               <View className=" mb-7 flex-1 justify-end items-center w-400">

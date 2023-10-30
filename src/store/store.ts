@@ -3,11 +3,13 @@ import GameReducer from "./slices/GameSlice";
 import thunk from "redux-thunk";
 import LivesReducer from "./slices/Lives";
 import CurrentQuestionIndexReducer from "./slices/CurrentQuestionIndexSlice";
+import CurrentLevelReducer from "./slices/CurrentLevelSlice";
 
 const rootReducer = combineReducers({
   game: GameReducer,
   lives: LivesReducer,
-  currentQuestionIndex: CurrentQuestionIndexReducer
+  currentQuestionIndex: CurrentQuestionIndexReducer,
+  currentLevel: CurrentLevelReducer
 });
 
 const store = configureStore({

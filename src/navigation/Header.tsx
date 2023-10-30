@@ -6,7 +6,6 @@ import {MyNavigationProp} from "./Navigator";
 import {useNavigation} from "@react-navigation/native";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
 import React from "react";
-import useCurrentLevel from "../hooks/useCurrentLevel";
 import {restartCurrentQuestionIndexState} from "../store/slices/CurrentQuestionIndexSlice";
 
 export type headerProps = {
@@ -18,10 +17,10 @@ const Header = ({isGamePage}: headerProps) => {
   const dispatch = useAppDispatch();
   const game = useAppSelector((state) => state.game.game);
   const currentQuestionIndex = useAppSelector((state) => state.currentQuestionIndex.value);
+  const currentLevel = useAppSelector((state) => state.currentLevel.value);
   const lives = useAppSelector((state) => state.lives);
-  const currentLevel = useCurrentLevel();
-  const totalQuestions = game[currentLevel].questions.length;
-  const gameIsDone = game.filter((game) => game.isDone === true).length;
+  const totalQuestions = game[currentLevel]?.questions?.length;
+  const gameIsDone = game?.filter((game) => game.isDone === true).length;
 
   const handleGoBack = () => {
     navigation.goBack();

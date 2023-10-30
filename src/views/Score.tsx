@@ -7,6 +7,7 @@ import {routeScoreProps} from "../navigation/Navigator";
 import {useAppDispatch} from "../store/hooks";
 import {updateIsDoneInGame} from "../store/slices/GameSlice";
 import React from "react";
+import {incrementCurrentLevelState} from "../store/slices/CurrentLevelSlice";
 
 const Score = ({route}: routeScoreProps) => {
   const navigation = useNavigation();
@@ -16,6 +17,7 @@ const Score = ({route}: routeScoreProps) => {
   const handleResetHome = () => {
     if (score === nbQuestion) {
       dispatch(updateIsDoneInGame(id));
+      dispatch(incrementCurrentLevelState());
     }
     navigation.dispatch(CommonActions.reset({
       index: 1,
