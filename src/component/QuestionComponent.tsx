@@ -115,11 +115,11 @@ const QuestionComponent = ({level}: QuestionComponent) => {
         <AnswerComponent questionItem={currentQuestion} onPress={handleAnswer} selectedOption={selectedOption}
           colorSelectedOption={colorSelectedOption} isDisabled={isDisabled}/>
         {titleButton == TITLE_BUTTON_CORRECT &&
-          <SnackBarComponent bg={"#CBFCCA"} height={"36"} title={"Super !"} icon={"check-circle"}
+          <SnackBarComponent bg={"#CBFCCA"} height={160} title={"Super !"} icon={"check-circle"}
             colorIcon={COLOR_GREEN}/>
         }
         {titleButton == TITLE_BUTTON_INCORRECT &&
-          <SnackBarComponent bg={"#FDCACA"} height={"1/2"} title={"Incorrect"} icon={"times-circle"}
+          <SnackBarComponent bg={"#FDCACA"} height={220} title={"Incorrect"} icon={"times-circle"}
             colorIcon={COLOR_RED} correctAnswer={currentQuestion.correctAnswer}/>
         }
         <ButtonComponent onPress={titleButton === "Valider" ? handleCheckAnswer : handleNextQuestion}
