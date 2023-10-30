@@ -15,7 +15,7 @@ const LevelComponent = ({onPress, img, isDisabled, isDone}: levelComponentProps)
         className="h-[140px] w-[140px] rounded-full justify-center items-center"
         onPress={onPress}
         disabled={isDisabled}
-        style={isDisabled ? {backgroundColor: "gray"} : isDone ? {backgroundColor: "gold"} : {backgroundColor: "#15DF11"}}
+        style={isDisabled ? {backgroundColor: "gray"} : isDone ? {backgroundColor: "#15DF11"} : {backgroundColor: "gold"}}
       >
         <View
           className="h-[120px] w-[120px] bg-[#419677] rounded-full justify-center items-center"
