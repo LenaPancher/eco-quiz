@@ -19,67 +19,6 @@ const initialState = {
   game: <Level[]> [
     {
       level: 1,
-      title: "Le recyclage",
-      description: "Challengez vous sur vos connaissances en recyclage",
-      isDone: false,
-      questions: [
-        {
-          question: "Quel déchet peut être recyclé ?",
-          options: ["Plastique", "Pain", "Carton", "Verre"],
-          correctAnswer: "Verre"
-        },
-        {
-          question: "Où doit-on jeter les déchets électroniques ?",
-          options: ["Poubelle", "Compost", "Évier", "Point de collecte spécialisé"],
-          correctAnswer: "Point de collecte spécialisé"
-        },
-        {
-          question: "Quel matériau est biodégradable ?",
-          options: ["Métal", "Plastique", "Verre", "Papier"],
-          correctAnswer: "Papier"
-        },
-        {
-          question: "Comment réduire la consommation d'eau ?",
-          options: [
-            "Utiliser de l'huile",
-            "Fermer le robinet",
-            "Laisser couler",
-            "Manger des légumes"
-          ],
-          correctAnswer: "Fermer le robinet"
-        }
-      ]
-    },
-    {
-      level: 2,
-      title: "Le Co2",
-      isDone: false,
-      description: "Challengez vous sur vos connaissances en Co2",
-      questions: [
-        {
-          question: "Quel type de transport est le plus écologique ?",
-          options: ["Vélo", "Voiture électrique", "Avion", "Moto"],
-          correctAnswer: "Vélo"
-        },
-        {
-          question: "Quel déchet ne va jamais dans la poubelle verte ?",
-          options: ["Papier", "Verre", "Piles", "Légumes"],
-          correctAnswer: "Piles"
-        },
-        {
-          question: "Que signifie 'RE-RE-RE' dans le recyclage ?",
-          options: ["Réduire, Réutiliser, Recycler", "Refuser, Rire, Ranger"],
-          correctAnswer: "Réduire, Réutiliser, Recycler"
-        },
-        {
-          question: "Lequel est un aliment non périssable ?",
-          options: ["Lait", "Poisson", "Pain", "Riz"],
-          correctAnswer: "Riz"
-        }
-      ]
-    },
-    {
-      level: 3,
       title: "Les pénuries d'eau",
       description: "Quand une goutte d'eau se transforme en super-héros",
       isDone: false,
@@ -87,10 +26,10 @@ const initialState = {
         {
           question: "Quelle est la principale cause de la pénurie d'eau dans de nombreuses régions du monde ?",
           options: [
-            "Le gaspillage excessif d'eau",
             "La pollution de l'eau",
             "Les précipitations insuffisantes",
-            "La surconsommation de boissons gazeuses"
+            "La surconsommation de boissons gazeuses",
+            "Le gaspillage excessif d'eau"
           ],
           correctAnswer: "Le gaspillage excessif d'eau"
         },
@@ -105,19 +44,57 @@ const initialState = {
           correctAnswer: "Moins de 1%"
         },
         {
-          question: "Qu'est-ce que l'agriculture durable peut contribuer à la conservation de l'eau ?",
+          question: "Comment l'agriculture durable peut-elle contribuer à la conservation de l'eau ?",
           options: [
-            "La mise en place de techniques d'irrigation efficaces",
             "L'abandon de l'agriculture",
             "L'utilisation intensive d'engrais chimiques",
-            "L'augmentation de la consommation d'eau dans les exploitations agricoles"
+            "La mise en place de techniques d'irrigation efficaces",
+            "L'augmentation de la consommation d'eau dans l'agriculture"
           ],
           correctAnswer: "La mise en place de techniques d'irrigation efficaces"
         }
       ]
     },
     {
-      level: 4,
+      level: 2,
+      title: "Pollution de l'Industrie de la Pêche",
+      description: "Testez vos connaissances sur l'impact de l'industrie de la pêche sur l'environnement !",
+      isDone: false,
+      questions: [
+        {
+          question: "Quel est l'un des principaux problèmes environnementaux liés à l'industrie de la pêche ?",
+          options: [
+            "La déforestation",
+            "La pollution de l'air",
+            "La surpêche",
+            "L'épuisement des réserves d'eau douce"
+          ],
+          correctAnswer: "La surpêche"
+        },
+        {
+          question: "Quel type de déchet est souvent associé à l'industrie de la pêche, en particulier la pêche aux filets ?",
+          options: [
+            "Plastique",
+            "Verre",
+            "Métal",
+            "Bois"
+          ],
+          correctAnswer: "Plastique"
+        },
+        {
+          question: "Quelle méthode de pêche est connue pour son impact destructeur sur les écosystèmes marins ?",
+          options: [
+            "La pêche à la ligne",
+            "La pêche au harpon",
+            "La pêche au chalut",
+            "La pêche à la nasse"
+          ],
+          correctAnswer: "La pêche au chalut"
+        }
+      ]
+    },
+    {
+      level: 3,
       title: "L'eau sur terre",
       description: "Pourquoi l'eau ne dit jamais de blagues ?",
       isDone: false,
@@ -145,7 +122,7 @@ const initialState = {
         {
           question: "Qu'est-ce que la xéropaysagisme ?",
           options: [
-            "Une technique de jardinage permettant de réduire la consommation d'eau",
+            "Jardiner en réduisant la consommation d'eau",
             "Une maladie des plantes causée par un excès d'arrosage",
             "La construction d'un barrage pour stocker de l'eau",
             "Une méthode pour purifier l'eau"

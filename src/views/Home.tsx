@@ -1,4 +1,11 @@
-import {Modal, Pressable, Text, TouchableWithoutFeedback, View} from "react-native";
+import {
+  ActivityIndicator,
+  Modal,
+  Pressable,
+  Text,
+  TouchableWithoutFeedback,
+  View
+} from "react-native";
 import LevelComponent from "../component/LevelComponent";
 import {useNavigation} from "@react-navigation/native";
 import {MyNavigationProp} from "../navigation/Navigator";
@@ -11,20 +18,30 @@ const Home = () => {
   const game = useAppSelector((state) => state.game.game);
   const [modalVisible, setModalVisible] = useState<number | null>(null);
   const currentLevel = useAppSelector((state) => state.currentLevel.value);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleGoingToGame = useCallback((level_id: number) => {
     setModalVisible(null);
-    navigation.navigate("Game", {
-      id: level_id
-    });
+    setIsLoading(!isLoading);
+    setTimeout(() => {
+      navigation.navigate("Game", {
+        id: level_id
+      });
+    }, 2000);
+    return setIsLoading(!isLoading);
   }, []);
+
+  if (isLoading)
+    return (
+      <View className="flex-1 justify-center items-center">
+        <ActivityIndicator size={32} color={"darkgreen"} />
+      </View>
+    );
 
   return (
     <View className="flex-1 items-center bg-[#FFFFFF] h-full">
       {game.map(({level, title, description, isDone}, index) => (
-        <View
-          key={index}
-        >
+        <View key={index}>
           <LevelComponent
             img={world}
             onPress={() => setModalVisible(level)}

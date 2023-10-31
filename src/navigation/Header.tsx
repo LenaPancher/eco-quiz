@@ -3,7 +3,7 @@ import HeaderButton from "./HeaderButton";
 import {Entypo, FontAwesome5, Octicons} from "@expo/vector-icons";
 import ProgressBar from "../component/ProgressBar";
 import {MyNavigationProp} from "./Navigator";
-import {useNavigation} from "@react-navigation/native";
+import {useNavigation, CommonActions} from "@react-navigation/native";
 import {useAppDispatch, useAppSelector} from "../store/hooks";
 import React from "react";
 import {restartCurrentQuestionIndexState} from "../store/slices/CurrentQuestionIndexSlice";
@@ -23,7 +23,15 @@ const Header = ({isGamePage}: headerProps) => {
   const gameIsDone = game?.filter((game) => game.isDone === true).length;
 
   const handleGoBack = () => {
-    navigation.goBack();
+    //navigation.goBack();
+    navigation.dispatch(CommonActions.reset({
+      index: 1,
+      routes: [
+        {
+          name: "Home"
+        }
+      ]
+    }));
     dispatch(restartCurrentQuestionIndexState());
   };
 
